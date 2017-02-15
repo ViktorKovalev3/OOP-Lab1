@@ -9,7 +9,7 @@ private:
 public:
     Polinom(double, double, double);
     void set(double, double, double);
-    //0 - isn't ok, 1 - ok
+    //0 - isn't ok (discriminant < 0), 1 - ok
     bool roots(double*, double*);
     double value(double);
 };

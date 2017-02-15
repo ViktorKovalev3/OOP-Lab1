@@ -1,11 +1,9 @@
-#include "interface.h"
 #include <QApplication>
+#include "task.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    interface w;
-    w.show();
-
+    task lab1_task;
     return a.exec();
 }
