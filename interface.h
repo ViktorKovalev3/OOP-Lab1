@@ -28,6 +28,7 @@ private:
     QLineEdit* p_led_b;
     QLineEdit* p_led_c;
     QLineEdit* p_led_x;
+    QValidator *double_filter;
 private slots:
     void calculate_button_pressed();
 };

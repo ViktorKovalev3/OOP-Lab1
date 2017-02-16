@@ -5,7 +5,7 @@ interface::interface(QWidget *parent)
     : QWidget(parent)
 {
     this->setWindowTitle("Polinom calculator");
-    QValidator *double_filter = new QRegExpValidator(QRegExp("[+-]?\\d*\\.?\\d+"),0);
+    double_filter = new QRegExpValidator(QRegExp("[+-]?\\d*\\.?\\d+"),0);
 
     QLabel* p_lbl_polinome = new QLabel("a*x^2+b*x+c");
     QPushButton* p_calculate_button = new QPushButton("Calculate");
@@ -68,4 +68,10 @@ void interface::calculate_button_pressed()
                 );
 }
 
-interface::~interface(){}
+interface::~interface()
+{
+    delete p_led_a;
+    delete p_led_b;
+    delete p_led_c;
+    delete p_led_x;
+}
