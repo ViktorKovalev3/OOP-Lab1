@@ -21,8 +21,8 @@ interface::interface(QWidget *parent)
     p_led_x->setValidator(double_filter);
 
     p_lbl_calculated_value = new QLabel("p(x) = ");
-    p_lbl_root1 = new QLabel("x<sub>1</sub> = ");
-    p_lbl_root2 = new QLabel("x<sub>2</sub> = ");
+    p_lbl_root1 = new QLabel("x<sub>1</sub> = nan");
+    p_lbl_root2 = new QLabel("x<sub>2</sub> = nan");
 
     QGridLayout* p_glayout = new QGridLayout;
     p_glayout->addWidget(p_lbl_polinome, 0, 0, 1, 3);

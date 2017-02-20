@@ -13,7 +13,7 @@ public:
 public slots:
     void set_polinom_coeff(double, double, double);
     //0 - isn't ok (discriminant < 0), 1 - ok
-    bool calculate_polinom_and_roots(double x);
+    void calculate_polinom_and_roots(double x);
 signals:
     void roots_calculated(double, double);
     void polinom_value_calculated(double);

@@ -1,4 +1,5 @@
 #include "task.h"
+#include <cmath>
 
 task::task(QObject *parent) :
     QObject(parent), polinom(0,0,0)
@@ -30,13 +31,11 @@ void task::set_polinom_coeff(double a, double b, double c)
     polinom.set(a, b, c);
 }
 
-bool task::calculate_polinom_and_roots(double x)
+void task::calculate_polinom_and_roots(double x)
 {
     emit polinom_value_calculated(polinom.value(x));
     double root1 = 0.0, root2 = 0.0;
     if (polinom.roots(&root1, &root2)){
         emit roots_calculated(root1, root2);
-        return 1;
-    } else
-        return 0;
+    }
 }
