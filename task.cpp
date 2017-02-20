@@ -15,7 +15,7 @@ task::task(QObject *parent) :
     //Connecting task signals
     connect(
             this, SIGNAL(polinom_value_calculated(double)),
-            &interface_w, SLOT(update_polinom_val(double))
+            &interface_w, SLOT(update_calculated_value(double))
             );
     connect(
             this, SIGNAL(roots_calculated(double,double)),
