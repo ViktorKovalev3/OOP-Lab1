@@ -26,8 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         interface.cpp \
     polinom.cpp \
-    task.cpp
+    task.cpp \
+    complex.cpp
 
 HEADERS  += interface.h \
     polinom.h \
-    task.h
+    task.h \
+    complex.h
