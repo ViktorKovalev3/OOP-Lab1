@@ -7,9 +7,11 @@ Complex::Complex(double re, double im){
 
 Complex& Complex::Re(double re){
     this->re = re;
+    return *this;
 }
 Complex& Complex::Im(double im){
     this->im = im;
+    return *this;
 }
 
 double Complex::Re() const{
