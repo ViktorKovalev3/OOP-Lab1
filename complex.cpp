@@ -1,5 +1,6 @@
 #include "complex.h"
 #include <limits>
+#include <cmath>
 Complex::Complex(double re, double im){
     this->re = re;
     this->im = im;
@@ -79,4 +80,13 @@ inline Complex& operator*(const Complex& a, const Complex& b){
 inline Complex& operator/(const Complex& a, const Complex& b){
     Complex c = a;
     return  c /= b;
+}
+
+#define SIGNUM(Val) ((Val) < 0 ? (-1) : !!(Val))
+inline Complex sqrt(const Complex& a){
+    //Look wikipedia: "Square roots of negative and complex numbers"
+    double tmp_re, tmp_im;
+    tmp_re = std::sqrt( (a.Re()   + std::sqrt(a.Re() * a.Re() + a.Im() * a.Im())) / 2);
+    tmp_im = SIGNUM(a.Re()) * std::sqrt( (- a.Re() + std::sqrt(a.Re() * a.Re() + a.Im() * a.Im())) / 2);
+    return Complex(tmp_re, tmp_im);
 }
