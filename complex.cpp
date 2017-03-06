@@ -52,11 +52,11 @@ Complex& Complex::operator/=(const Complex& a){
     return *this;
 }
 
-Complex& Complex::operator +(const Complex &a){
+Complex& Complex::operator +(){
     return *this;
 }
 
-Complex& Complex::operator -(const Complex &a){
+Complex& Complex::operator -(){
     re = - re; im = - im;
     return *this;
 }
