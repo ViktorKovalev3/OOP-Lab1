@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QLayout>
+#include "complex.h"
 
 class interface : public QWidget
 {
@@ -14,11 +15,11 @@ class interface : public QWidget
 public:
     interface(QWidget *parent = 0);
 public slots:
-    void update_roots_val(double, double);
-    void update_calculated_value(double);
+    void update_roots_val(Complex, Complex);
+    void update_calculated_value(Complex);
 signals:
-    void set_polinom_coeff(double, double, double);
-    void starting_calculate_polinome(double);
+    void set_polinom_coeff(QString, QString, QString);
+    void starting_calculate_polinome(QString);
 private:
     QLabel *p_lbl_root1, *p_lbl_root2,
            *p_lbl_calculated_value, *p_lbl_polinome;

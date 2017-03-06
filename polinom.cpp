@@ -12,10 +12,10 @@ void Polinom::set(Complex new_a, Complex new_b, Complex new_c)
 
 bool Polinom::roots(Complex *root1, Complex *root2)
 {
-    Complex discriminant = b * b - 4 * a * c;
+    Complex discriminant = b * b - 4.0 * a * c;
     try{
-        *root1 = (- b - sqrt(discriminant)) / (2 * a);
-        *root2 = (- b + sqrt(discriminant)) / (2 * a);
+        *root1 = (- b - sqrt(discriminant)) / (2.0 * a);
+        *root2 = (- b + sqrt(discriminant)) / (2.0 * a);
     }catch(Zero_Divide){
         return 1;
     }

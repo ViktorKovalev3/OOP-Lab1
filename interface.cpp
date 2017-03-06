@@ -8,17 +8,17 @@ interface::interface(QWidget *parent)
     this->setMinimumSize(300, 300);
 
     p_lbl_polinome = new QLabel("a*x<sup>2</sup>+b*x+c", this);
-    QValidator *double_filter = new QRegExpValidator(QRegExp("[+-]?\\d*\\.?\\d+"), this);
+    QValidator *complex_filter = new QRegExpValidator(QRegExp("[+-]?\\d*\\.?\\d+"), this);
     QPushButton* p_calculate_button = new QPushButton("Calculate");
 
     QLabel* p_lbl_a = new QLabel("a ", this); p_led_a = new  QLineEdit("0.0");
-    p_led_a->setValidator(double_filter);
+    p_led_a->setValidator(complex_filter);
     QLabel* p_lbl_b = new QLabel("b "); p_led_b = new  QLineEdit("0.0");
-    p_led_b->setValidator(double_filter);
+    p_led_b->setValidator(complex_filter);
     QLabel* p_lbl_c = new QLabel("c "); p_led_c = new  QLineEdit("0.0");
-    p_led_c->setValidator(double_filter);
+    p_led_c->setValidator(complex_filter);
     QLabel* p_lbl_x = new QLabel("x "); p_led_x = new  QLineEdit("0.0");
-    p_led_x->setValidator(double_filter);
+    p_led_x->setValidator(complex_filter);
 
     p_lbl_calculated_value = new QLabel("p(x) = ");
     p_lbl_root1 = new QLabel("x<sub>1</sub> = nan");
@@ -42,26 +42,29 @@ interface::interface(QWidget *parent)
     connect(p_led_c, SIGNAL(textEdited(QString)), this, SLOT(update_polinom()));
 }
 
-void interface::update_roots_val(double root1, double root2)
+void interface::update_roots_val(Complex root1, Complex root2)
 {
-    p_lbl_root1->setText("x<sub>1</sub> = " + QString::number(root1,'g',10));
-    p_lbl_root2->setText("x<sub>2</sub> = " + QString::number(root2,'g',10));
+    p_lbl_root1->setText("x<sub>1</sub> = " + QString::number(root1.Re(),'g',10)
+                         + " + " + QString::number(root1.Im(),'g',10)+"i");
+    p_lbl_root2->setText("x<sub>2</sub> = " + QString::number(root2.Re(),'g',10)
+                         + " + " + QString::number(root2.Im(),'g',10)+"i");
 }
 
-void interface::update_calculated_value(double polinom_value)
+void interface::update_calculated_value(Complex polinom_value)
 {
     p_lbl_calculated_value->setText(tr("p(%0) = ").arg(p_led_x->text()) +
-                                    QString::number(polinom_value));
+                                    QString::number(polinom_value.Re()) + " + " +
+                                    QString::number(polinom_value.Im()) + "i");
 }
 
 void interface::calculate_button_pressed()
 {
     emit set_polinom_coeff(
-                p_led_a->text().toDouble(),
-                p_led_b->text().toDouble(),
-                p_led_c->text().toDouble()
+                p_led_a->text(),
+                p_led_b->text(),
+                p_led_c->text()
                 );
-    emit starting_calculate_polinome(p_led_x->text().toDouble());
+    emit starting_calculate_polinome(p_led_x->text());
 }
 
 void interface::update_polinom()

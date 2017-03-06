@@ -6,35 +6,42 @@ task::task(QObject *parent) :
 {
     //Connecting interface signals
     connect(
-            &interface_w, SIGNAL(set_polinom_coeff(double,double,double)),
-            SLOT(set_polinom_coeff(double,double,double))
+            &interface_w, SIGNAL(set_polinom_coeff(QString, QString, QString)),
+            SLOT(set_polinom_coeff(QString,QString,QString))
             );
     connect(
-            &interface_w, SIGNAL(starting_calculate_polinome(double)),
-            SLOT(calculate_polinom_and_roots(double))
+            &interface_w, SIGNAL(starting_calculate_polinome(QString)),
+            SLOT(calculate_polinom_and_roots(QString))
             );
     //Connecting task signals
     connect(
-            this, SIGNAL(polinom_value_calculated(double)),
-            &interface_w, SLOT(update_calculated_value(double))
+            this, SIGNAL(polinom_value_calculated(Complex)),
+            &interface_w, SLOT(update_calculated_value(Complex))
             );
     connect(
-            this, SIGNAL(roots_calculated(double,double)),
-            &interface_w, SLOT(update_roots_val(double,double))
+            this, SIGNAL(roots_calculated(Complex, Complex)),
+            &interface_w, SLOT(update_roots_val(Complex,Complex))
             );
 
     interface_w.show();
 }
 
-void task::set_polinom_coeff(double a, double b, double c)
-{
-    polinom.set(a, b, c);
+Complex parse_qstring_to_complex(QString a){
+    return 12;
 }
 
-void task::calculate_polinom_and_roots(double x)
+
+void task::set_polinom_coeff(QString a, QString b, QString c)
 {
-    emit polinom_value_calculated(polinom.value(x));
-    double root1 = 0.0, root2 = 0.0;
+    polinom.set(parse_qstring_to_complex(a),
+                parse_qstring_to_complex(b),
+                parse_qstring_to_complex(b));
+}
+
+void task::calculate_polinom_and_roots(QString x)
+{
+    emit polinom_value_calculated(polinom.value(parse_qstring_to_complex(x)));
+    Complex root1, root2;
     if (polinom.roots(&root1, &root2)){
         emit roots_calculated(root1, root2);
     }

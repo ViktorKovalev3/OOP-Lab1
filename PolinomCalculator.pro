@@ -33,3 +33,4 @@ HEADERS  += interface.h \
     polinom.h \
     task.h \
     complex.h
+
