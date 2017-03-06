@@ -8,7 +8,9 @@ interface::interface(QWidget *parent)
     this->setMinimumSize(300, 300);
 
     p_lbl_polinome = new QLabel("a*x<sup>2</sup>+b*x+c", this);
-    QValidator *complex_filter = new QRegExpValidator(QRegExp("[+-]?\\d*\\.?\\d+"), this);
+    QString tmp_Rexp = "^([-+]?(\\d+\\.?\\d*|\\d*\\.?\\d+)([Ee][-+]?[0-2]?\\d{1,2})?[r]?|[-+]?((\\d+\\.?\\d*|\\d*\\.?\\d+)([Ee][-+]?[0-2]?\\d{1,2})?)?[i]|[-+]?(\\d+\\.?\\d*|\\d*\\.?\\d+)"
+                       "([Ee][-+]?[0-2]?\\d{1,2})?[r]?[-+]((\\d+\\.?\\d*|\\d*\\.?\\d+)([Ee][-+]?[0-2]?\\d{1,2})?)?[i])$";
+    QValidator *complex_filter = new QRegExpValidator(QRegExp(tmp_Rexp), this);
     QPushButton* p_calculate_button = new QPushButton("Calculate");
 
     QLabel* p_lbl_a = new QLabel("a ", this); p_led_a = new  QLineEdit("0.0");
@@ -69,7 +71,7 @@ void interface::calculate_button_pressed()
 
 void interface::update_polinom()
 {
-    p_lbl_polinome->setText(tr("%1*x<sup>2</sup>+%2*x+%3").arg(
+    p_lbl_polinome->setText(tr("(%1)*x<sup>2</sup>+(%2)*x+(%3)").arg(
                                 p_led_a->text(),
                                 p_led_b->text(),
                                 p_led_c->text()));
