@@ -60,3 +60,23 @@ Complex& Complex::operator -(){
     re = - re; im = - im;
     return *this;
 }
+//Helpers functions
+inline Complex& operator+ (const Complex& a, const Complex& b){
+    Complex c = a;
+    return  c += b;
+}
+
+inline Complex& operator- (const Complex& a, const Complex& b){
+    Complex c = a;
+    return  c -= b;
+}
+
+inline Complex& operator*(const Complex& a, const Complex& b){
+    Complex c = a;
+    return  c *= b;
+}
+
+inline Complex& operator/(const Complex& a, const Complex& b){
+    Complex c = a;
+    return  c /= b;
+}

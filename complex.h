@@ -26,4 +26,5 @@ private:
     double re, im;
 };
 
+#include "complex.cpp" //for including helpers functions
 #endif // COMPLEX_H
