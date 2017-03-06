@@ -1,5 +1,6 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
+
 #include <string>
 
 class Zero_Divide{
@@ -26,5 +27,11 @@ private:
     double re, im;
 };
 
-#include "complex.cpp" //for including helpers functions
+//Helper functions
+Complex& operator+ (const Complex& a, const Complex& b);
+Complex& operator- (const Complex& a, const Complex& b);
+Complex& operator*(const Complex& a, const Complex& b);
+Complex& operator/(const Complex& a, const Complex& b);
+Complex sqrt(const Complex& a);
+
 #endif // COMPLEX_H

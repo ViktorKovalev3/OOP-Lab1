@@ -62,31 +62,31 @@ Complex& Complex::operator -(){
     return *this;
 }
 //Helpers functions
-inline Complex& operator+ (const Complex& a, const Complex& b){
+Complex& operator+ (const Complex& a, const Complex& b){
     Complex c = a;
     return  c += b;
 }
 
-inline Complex& operator- (const Complex& a, const Complex& b){
+Complex& operator- (const Complex& a, const Complex& b){
     Complex c = a;
     return  c -= b;
 }
 
-inline Complex& operator*(const Complex& a, const Complex& b){
+Complex& operator*(const Complex& a, const Complex& b){
     Complex c = a;
     return  c *= b;
 }
 
-inline Complex& operator/(const Complex& a, const Complex& b){
+Complex& operator/(const Complex& a, const Complex& b){
     Complex c = a;
     return  c /= b;
 }
 
-#define SIGNUM(Val) ((Val) < 0 ? (-1) : !!(Val))
-inline Complex sqrt(const Complex& a){
+//#define SIGNUM(Val) ((Val) < 0 ? (-1) : !!(Val))
+Complex sqrt(const Complex& a){
     //Look wikipedia: "Square roots of negative and complex numbers"
     double tmp_re, tmp_im;
     tmp_re = std::sqrt( (a.Re()   + std::sqrt(a.Re() * a.Re() + a.Im() * a.Im())) / 2);
-    tmp_im = SIGNUM(a.Re()) * std::sqrt( (- a.Re() + std::sqrt(a.Re() * a.Re() + a.Im() * a.Im())) / 2);
+    tmp_im = ((a.Re()) < 0 ? (-1) : !!(a.Re())) * std::sqrt( (- a.Re() + std::sqrt(a.Re() * a.Re() + a.Im() * a.Im())) / 2);
     return Complex(tmp_re, tmp_im);
 }
