@@ -56,12 +56,12 @@ void interface::update_calculated_value(double polinom_value)
 
 void interface::calculate_button_pressed()
 {
-    emit starting_calculate_polinome(p_led_x->text().toDouble());
     emit set_polinom_coeff(
                 p_led_a->text().toDouble(),
                 p_led_b->text().toDouble(),
                 p_led_c->text().toDouble()
                 );
+    emit starting_calculate_polinome(p_led_x->text().toDouble());
 }
 
 void interface::update_polinom()
