@@ -23,6 +23,12 @@ double Complex::Im() const{
     return im;
 }
 
+Complex& Complex::operator=(Complex a)
+{
+    re = a.re; im = a.im;
+    return *this;
+}
+
 Complex& Complex::operator+=(const Complex &a){
     re += a.re; im += a.im;
     return *this;
@@ -62,22 +68,22 @@ Complex& Complex::operator -(){
     return *this;
 }
 //Helpers functions
-Complex& operator+ (const Complex& a, const Complex& b){
+Complex operator+ (const Complex& a, const Complex& b){
     Complex c = a;
     return  c += b;
 }
 
-Complex& operator- (const Complex& a, const Complex& b){
+Complex operator- (const Complex& a, const Complex& b){
     Complex c = a;
     return  c -= b;
 }
 
-Complex& operator*(const Complex& a, const Complex& b){
+Complex operator*(const Complex& a, const Complex& b){
     Complex c = a;
     return  c *= b;
 }
 
-Complex& operator/(const Complex& a, const Complex& b){
+Complex operator/(const Complex& a, const Complex& b){
     Complex c = a;
     return  c /= b;
 }

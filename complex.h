@@ -17,6 +17,7 @@ public:
     Complex& Im(double);
     double Im() const;
 
+    Complex& operator=(Complex);
     Complex& operator+=(const Complex&);
     Complex& operator-=(const Complex&);
     Complex& operator*=(const Complex&);
@@ -28,10 +29,10 @@ private:
 };
 
 //Helper functions
-Complex& operator+ (const Complex& a, const Complex& b);
-Complex& operator- (const Complex& a, const Complex& b);
-Complex& operator*(const Complex& a, const Complex& b);
-Complex& operator/(const Complex& a, const Complex& b);
+Complex operator+ (const Complex& a, const Complex& b);
+Complex operator- (const Complex& a, const Complex& b);
+Complex operator*(const Complex& a, const Complex& b);
+Complex operator/(const Complex& a, const Complex& b);
 Complex sqrt(const Complex& a);
 
 #endif // COMPLEX_H
