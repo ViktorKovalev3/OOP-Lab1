@@ -1,29 +1,28 @@
 #include "polinom.h"
-#include <QtCore/qmath.h>
 
-Polinom::Polinom(double new_a = 0.0, double new_b = 0.0, double new_c = 0.0)
+Polinom::Polinom(Complex new_a = 0.0, Complex new_b = 0.0, Complex new_c = 0.0)
 {
     a = new_a; b = new_b; c = new_c;
 }
 
-void Polinom::set(double new_a, double new_b, double new_c)
+void Polinom::set(Complex new_a, Complex new_b, Complex new_c)
 {
     a = new_a; b = new_b; c = new_c;
 }
 
-bool Polinom::roots(double* root1, double* root2)
+bool Polinom::roots(Complex *root1, Complex *root2)
 {
-    double discriminant = b * b - 4 * a * c;
-    if (discriminant < 0)
-        return 0;
-    else{
-        *root1 = (- b - qSqrt(discriminant)) / (2 * a);
-        *root2 = (- b + qSqrt(discriminant)) / (2 * a);
+    Complex discriminant = b * b - 4 * a * c;
+    try{
+        *root1 = (- b - sqrt(discriminant)) / (2 * a);
+        *root2 = (- b + sqrt(discriminant)) / (2 * a);
+    }catch(Zero_Divide){
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
-double Polinom::value(double x)
+Complex Polinom::value(Complex x)
 {
     return a * x * x + b * x + c;
 }
